@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+   <!--  <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body background="assets/images/webbing.jpg">
+    <div class="container">
+      <div class="jumbotron" style="background-image: url(assets/images/manhattan.jpg)">
+        <h1 class="text-center">Spiderman: Battle in Manhattan!</h1>
+        <!-- <h2 class="text-center"> Awesome Header </h2> -->
+          <p class="text-center"> <b>Pick a Character and fight the others</b> </p>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins)
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    Include all compiled plugins (below), or include individual files as needed
+    <script src="js/bootstrap.min.js"></script>-->
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <button id="button1" class="btn char"><img src="assets/images/spidey.jpg" class="img-responsive" id="spidey" alt="spidey"><h4>Spiderman</h4><h5> 100 HP </h5></button>
+          <button id="button2" class="btn char"><img src="assets/images/daredvil.jpg" class="img-responsive" id="daredevil" alt="spidey"><h4>Daredevil</h4><h5> 100 HP </h5></button>
+          <button id="button3" class="btn char"><img src="assets/images/goblin.jpg" class="img-responsive" id="goblin" alt="spidey"><h4>Green Goblin</h4><h5> 100 HP </h5></button>
+          <button id="button4" class="btn char"><img src="assets/images/carnage.png" class="img-responsive" id="carnage" alt="spidey"><h4>Carnage</h4><h5> 100 HP </h5></button>
+        </div>
+        <div class="col-md-4">
+        <img src="assets/images/spiderman.jpg" class="img-responsive" id="spidey" alt="spidey">
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-2">
+          <button id="button5" class="btn"><img src="assets/images/spidey.jpg" class="img-responsive hero" id="spidey" alt="spidey"><h4>Spiderman</h4><h5> 100 HP </h5></button>
+          <button id="button6" class="btn"><img src="assets/images/daredvil.jpg" class="img-responsive hero" id="daredevil" alt="spidey"><h4>Daredevil</h4><h5> 100 HP </h5></button>
+          <button id="button7" class="btn"><img src="assets/images/goblin.jpg" class="img-responsive hero" id="goblin" alt="spidey"><h4>Green Goblin</h4><h5> 100 HP </h5></button>
+          <button id="button8" class="btn"><img src="assets/images/carnage.png" class="img-responsive hero" id="carnage" alt="spidey"><h4>Carnage</h4><h5> 100 HP </h5></button>
+      </div>
+
+      <div class="col-md-4">
+      <button id="buttonPlus attack" class="btn btn-danger operator" value=plus><h1>ATTACK</h1></button>
+      <button id="restart" class="btn operator" value=plus><h1>RESTART</h1></button>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function(){
+
+            var heroChosen = false;
+            var enemyChosen = false;
+            var carnage = [100, 25, 50];
+            var spider = [100, 15, 30];
+            var devil = [100, 10, 15];
+            var goblin = [100, 20, 12];
+            var enemy;
+            var health = 0;
+
+          if (heroChosen == false) {
+            $("#button8").css("background-color","green").hide(200);
+            $("#button5").css("background-color","green").hide(200);
+            $("#button6").css("background-color","green").hide(200);
+            $("#button7").css("background-color","green").hide(200);
+
+          }
+
+          // character selection
+            $("#button1").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button1").hide(200);
+              $("#button5").show(200);
+              $("#button4").css("background-color","red");
+              $("#button2").css("background-color","red");
+              $("#button3").css("background-color","red");
+              $("#button5").addClass("myHero");
+
+            }
+            });
+             $("#button2").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button2").hide(200);
+              $("#button6").show(200);
+              $("#button1").css("background-color","red");
+              $("#button4").css("background-color","red");
+              $("#button3").css("background-color","red");
+              $("#button6").addClass("myHero");
+            }
+          });
+
+             $("#button3").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button3").hide(200);
+              $("#button7").show(200);
+              $("#button1").css("background-color","red");
+              $("#button2").css("background-color","red");
+              $("#button4").css("background-color","red");
+              $("#button7").addClass("myHero");
+            }
+          });
+             $("#button4").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button4").hide(200);
+              $("#button8").show(200);
+              $("#button1").css("background-color","red");
+              $("#button2").css("background-color","red");
+              $("#button3").css("background-color","red");
+              $("#button8").addClass("myHero");
+            }
+          });
+
+
+
+             $("#restart").on("click", function() {
+            heroChosen = false;
+            enemyChosen = false;
+            enemy = "";
+            $("#button8").css("background-color","green").hide(200);
+            $("#button5").css("background-color","green").hide(200);
+            $("#button6").css("background-color","green").hide(200);
+            $("#button7").css("background-color","green").hide(200);
+
+            $("#button4").css("background-color","grey").show(200);
+            $("#button2").css("background-color","grey").show(200);
+            $("#button3").css("background-color","grey").show(200);
+            $("#button1").css("background-color","grey").show(200);
+
+        });
+
+               
+
+
+            $(".char").on("click", function() {
+              if (heroChosen == true) {
+                $().addClass("enemy");
+                enemy = $("#enemy");
+                $("#enemy").html();
+                $("#myguy").html();
+            //   }
+            // });
+
+             
+              // $("#attack").on("click", function() {
+              //   if (enemyChosen) {
+          //           heatlh = health - ememy;
+          //           ememyHealth = 
+          //           if (health < 1) {
+
+          //           }
+
+
+          //     //   }
+          //     // });
+          // });
+           
+            
+
+
+            </script>
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spiderman RPG</title>
+    <link href="assets/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet">
+    
+  </head>
+  <body background="assets/images/webbing.jpg">
+    <div class="container">
+      <div class="jumbotron img-responsive" style="background-image: url(assets/images/manhattan.jpg)">
+        <h1 class="text-center">Spiderman: Battle for Manhattan!</h1>
+          <p class="text-center"> <b>Pick a Character and fight the others</b> </p>
+
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <button id="button1" class="btn char" data-name="Spiderman" data-health="120" data-damage="25"><img src="assets/images/spidey.jpg" class="img-responsive" id="spidey" health="100" alt="spidey"><h4>Spiderman</h4><h5 class="spidey"> 120 HP </h5></button>
+
+          <button id="button2" class="btn char" data-name="Daredevil" data-health="140" data-damage="15" ><img src="assets/images/daredvil.jpg" class="img-responsive" id="daredevil" alt="spidey"><h4>Daredevil</h4><h5 class="dd"> 140 HP </h5></button>
+
+          <button id="button3" class="btn char" data-name="Green Goblin" data-health="100" data-damage="20"><img src="assets/images/goblin.jpg" class="img-responsive" id="goblin" alt="spidey"><h4>Green Goblin</h4><h5 class="goblin"> 100 HP </h5></button>
+
+          <button id="button4" class="btn char" data-name="Carnage" data-health="130" data-damage="40" ><img src="assets/images/carnage.png" class="img-responsive" id="carnage" alt="spidey"><h4>Carnage</h4><h5 class="carnage"> 130 HP </h5></button>
+        </div>
+        <div class="col-md-4">
+        <img src="assets/images/spiderman.jpg" class="img-responsive" id="spidey" alt="spidey">
+    </div>
+
+    <div class="row"></div>
+    <div class="row">
+      
+      <div class="col-md-6">
+            <br>
+            <br>
+            <br>
+            <div class="message1 text-center"></div>
+            <div class="message2 text-center"></div>
+      
+      </div>
+      <div class="col-md-2">
+          <button id="button5" class="btn"><img src="assets/images/spidey.jpg" class="img-responsive hero"  alt="spidey"><h4>Spiderman</h4><h5 class="spidey"> 100 HP </h5></button>
+          <button id="button6" class="btn"><img src="assets/images/daredvil.jpg" class="img-responsive hero" id="daredevil" alt="spidey"><h4>Daredevil</h4><h5 class="dd"> 100 HP </h5></button>
+          <button id="button7" class="btn"><img src="assets/images/goblin.jpg" class="img-responsive hero" id="goblin" alt="spidey"><h4>Green Goblin</h4><h5 class="goblin"> 100 HP </h5></button>
+          <button id="button8" class="btn"><img src="assets/images/carnage.png" class="img-responsive" id="carnage" alt="spidey"><h4>Carnage</h4><h5 class="carnage"> 100 HP </h5></button>
+      </div>
+
+      <div class="row">
+      <div class="col-md-6"></div>
+
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-4">
+      <button id="buttonPlus attack" class="btn btn-danger attack"><h1>ATTACK</h1></button>
+      <button id="restart" class="btn" value=plus><h1>RESTART</h1></button>
+
+      </div>
+    </div>
+
+     <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function(){
+
+            var heroChosen = false;
+            var enemyChosen = false;
+            var hit;
+            var name;
+            var damage;
+            var enemy;
+            var yourHealth;
+            var theirHealth;
+            var count = 1;
+            var yourHit;
+            var dead = 0;
+
+          
+            
+
+          if (heroChosen == false) {
+            $("#button8").css("background-color","green").hide(200);
+            $("#button5").css("background-color","green").hide(200);
+            $("#button6").css("background-color","green").hide(200);
+            $("#button7").css("background-color","green").hide(200);
+
+          }
+
+          // character selection
+            $("#button1").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button1").hide(200);
+              $("#button5").show(200);
+              $("#button4").css("background-color","darkred");
+              $("#button2").css("background-color","darkred");
+              $("#button3").css("background-color","darkred");
+              $("#button5").addClass("myHero");
+              $(".char").addClass("enemies");
+              $(".enemies").removeClass("char");
+              yourHealth = $(this).data("health");
+              yourHit = $(this).data("damage")
+              classMaker();
+              attack();
+            
+
+
+
+            }
+            });
+             $("#button2").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button2").hide(200);
+              $("#button6").show(200);
+              $("#button1").css("background-color","darkred");
+              $("#button4").css("background-color","darkred");
+              $("#button3").css("background-color","darkred");
+              $("#button6").addClass("myHero");
+              $(".char").addClass("enemies");
+              $(".enemies").removeClass("char");
+              yourHealth = $(this).data("health");
+              yourHit = $(this).data("damage")
+              classMaker();
+              attack();
+              // console.log(yourHealth);
+            }
+          });
+
+             $("#button3").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button3").hide(200);
+              $("#button7").show(200);
+              $("#button1").css("background-color","darkred");
+              $("#button2").css("background-color","darkred");
+              $("#button4").css("background-color","darkred");
+              $("#button7").addClass("myHero");
+              $(".char").addClass("enemies");
+              $(".enemies").removeClass("char");
+              yourHealth = $(this).data("health");
+              yourHit = $(this).data("damage")
+              classMaker();
+              attack();
+              // console.log(yourHealth);
+            }
+          });
+             $("#button4").on("click", function() {
+              if (heroChosen == false) {
+              heroChosen = true;
+              $("#button4").hide(200);
+              $("#button8").show(200);
+              $("#button1").css("background-color","darkred");
+              $("#button2").css("background-color","darkred");
+              $("#button3").css("background-color","darkred");
+              $("#button8").addClass("myHero");
+              $(".char").addClass("enemies");
+              $(".enemies").removeClass("char");
+              yourHealth = $(this).data("health");
+              yourHit = $(this).data("damage")
+              classMaker();
+              attack();
+              
+            }
+          });
+
+             $("#restart").on("click", function() {
+              restart();
+
+        });
+  
+
+        function attack() {
+          $(".attack").on("click", function() {
+            if (enemyChosen == true) {
+
+            theirHealth = theirHealth - (count * yourHit);
+            if (theirHealth > 0) {
+              yourHealth -= damage;
+            }
+            
+            $(".currentEnemy h5").html(theirHealth + " HP");
+            $(".myHero h5").html(yourHealth + " HP");
+            $(".message1").html("You attacked " + enemy + " for " + (count * yourHit) + " HP!");
+            $(".message2").html(enemy + " attacked you for " + damage + " HP!");
+            
+
+            if (yourHealth <= 0) {
+              dead = 0;
+              restart();
+               $(".message1").html("You have been defeated!");
+               $(".message2").html("Play again");
+            }
+            if (theirHealth <= 0) {
+              $(".currentEnemy").hide(200);
+              enemyChosen = false;
+              dead += 1;
+               $(".message1").html("You attacked " + enemy + " for " + (count * yourHit) + " HP!");
+               $(".message2").html("You have defeated " + name);
+            }
+            count += 1;
+
+            if (dead == 3) {
+              dead = 0;
+              alert("You Win!");
+              restart();
+            }
+
+          }
+          });
+        }
+        
+
+        function classMaker() {
+
+          $(".enemies").on("click", function() {
+              if (heroChosen == true && enemyChosen == false) {
+                enemyChosen = true;
+                $(this).addClass("currentEnemy");
+                $(this).css("background-color","red");
+                  name = $(this).data('name');
+                  damage = $(this).data("damage");
+                  theirHealth = $(this).data("health");
+                  enemy = $(this).data("name")
+
+             }
+             
+            });
+        }
+           
+
+        function restart() {
+           
+
+            heroChosen = false;
+            enemyChosen = false;
+            enemy = "";
+            hit = 0;
+            name = 0;
+            damage = 0;
+            yourHit = 1;
+            yourHealth = 0;
+            theirHealth = 0;
+            count = 1;
+            dead = 0;
+
+            $(".message2").empty();
+            $(".message1").empty();
+            $("#button1").addClass("char");
+            $("#button2").addClass("char");
+            $("#button3").addClass("char");
+            $("#button4").addClass("char");
+
+            $(".btn").removeClass("enemies");
+            $(".btn").removeClass("currentEnemy");
+            $(".btn").removeClass("myHero");
+
+            $("#button8").css("background-color","green").hide(200);
+            $("#button5").css("background-color","green").hide(200);
+            $("#button6").css("background-color","green").hide(200);
+            $("#button7").css("background-color","green").hide(200);
+
+            $("#button4").css("background-color","grey").show(200);
+            $("#button2").css("background-color","grey").show(200);
+            $("#button3").css("background-color","grey").show(200);
+            $("#button1").css("background-color","grey").show(200);
+
+            $(".spidey").html(120 + " HP");
+            $(".dd").html(110 + " HP");
+            $(".goblin").html(100 + " HP");
+            $(".carnage").html(130 + " HP");
+            console.log(enemyChosen);
+            console.log(heroChosen);
+            console.log((".enemies").getElementsByClassName());
+        }
+
+          });        
+         
+
+            </script>
+  </body>
+</html>
